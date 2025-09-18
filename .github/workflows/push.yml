@@ -1,5 +1,5 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} is testing out GitHub Actions ð
 on: [push]
 jobs:
   mail_on_push:
@@ -13,6 +13,4 @@ jobs:
         username: ${{secrets.MAIL}}
         password: ${{secrets.MAIL_PASSWORD}}
         subject: ${{github.repository}} 
-        body: ${{github.event.pusher.name}} did ${{github.event.head_commit.message}}
-        to: ${{secrets.MAIL}}
-        from: GitHub actions
+
