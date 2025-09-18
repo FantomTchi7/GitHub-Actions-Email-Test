@@ -1,16 +1,18 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions ð
+run-name: ${{ github.actor }} is testing out GitHub Actions
 on: [push]
 jobs:
   mail_on_push:
     runs-on: ubuntu-latest
     steps:
-      name: Send mail
-      uses: dawidd6/action-send-mail
-      with:
-        server_address: smtp:gmail.com
-        server_port: 465
-        username: ${{secrets.MAIL}}
-        password: ${{secrets.MAIL_PASSWORD}}
-        subject: ${{github.repository}} 
-
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: ${{ github.repository }}
+          body: ${{ github.event.pusher.name }} did ${{ github.event.head_commit.message }}
+          to: ${{ secrets.MAIL }}
+          from: ${{ secrets.MAIL }}
